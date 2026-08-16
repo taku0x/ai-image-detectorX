@@ -1,0 +1,12 @@
+{
+  "name": "ai-image-detector-tools",
+  "private": true,
+  "type": "module",
+  "description": "Dev tooling for ext/ (the actual Chrome extension, which has no npm runtime dependency -- see scripts/vendor.sh). This package.json exists only for scripts/benchmark.mjs.",
+  "scripts": {
+    "benchmark": "node scripts/benchmark.mjs"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^4.2.0"
+  }
+}

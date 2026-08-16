@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>AI Image Detector</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header>
+    <img src="../icons/icon32.png" alt="" />
+    <h1>AI Image Detector</h1>
+  </header>
+
+  <section class="row">
+    <label class="switch">
+      <input type="checkbox" id="enabledToggle" />
+      <span class="slider"></span>
+    </label>
+    <span id="enabledLabel">Enabled</span>
+  </section>
+
+  <section class="row">
+    <label for="thresholdInput">Likely AI / Real threshold</label>
+    <input type="range" id="thresholdInput" min="55" max="95" step="1" />
+    <span id="thresholdValue">65%</span>
+  </section>
+  <p class="hint">Images between the threshold and its mirror (e.g. 35–65%) show as "Uncertain" rather than a confident guess.</p>
+
+  <section class="row">
+    <label class="switch">
+      <input type="checkbox" id="personDampeningToggle" />
+      <span class="slider"></span>
+    </label>
+    <span id="personDampeningLabel">Portrait dampening</span>
+  </section>
+  <p class="hint">Reduces false "AI" flags on studio-style portrait photos (tuned aggressively). Tradeoff: also reduces
+    sensitivity to real AI-generated portraits/deepfakes, and is slow — several seconds per image on some machines.
+    Off by default; only turn it on if the false-positive fix is worth both costs for you.</p>
+
+  <section id="modelStatus" class="status">
+    <span id="statusDot" class="dot"></span>
+    <span id="statusText">Checking model…</span>
+  </section>
+  <div id="progressWrap" class="progress-wrap" hidden>
+    <div id="progressBar" class="progress-bar"></div>
+  </div>
+
+  <section class="stats">
+    <div><strong id="statAnalyzed">0</strong><span>images analyzed</span></div>
+    <div><strong id="statFlagged">0</strong><span>likely AI</span></div>
+  </section>
+
+  <footer>
+    All inference runs on-device (WebGPU/WASM). No image ever leaves your browser.
+    <br />Model: amrita-detectly/detect-ai-image-v1 (Swin, MIT-licensed, quantized ONNX built for transformers.js; cached after first use).
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

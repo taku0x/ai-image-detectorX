@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>AI Image Detector — inference worker</title>
+</head>
+<body>
+  <!-- This page is never shown to the user. It exists only because Chrome's
+       Manifest V3 background service workers can't reliably do WASM/WebGPU
+       + canvas image decoding, so we run the actual model here via the
+       chrome.offscreen API. -->
+  <script type="module" src="offscreen.js"></script>
+</body>
+</html>
